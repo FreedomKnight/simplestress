@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package proto;
+option go_package = "github.com/freedomknight/simplestress/proto";
+
+message Ping {
+}
+
+message Pong {
+    string message = 1;
+}
+
+service Paddle {
+    rpc Serve (Ping) returns (Pong) {}
+}
