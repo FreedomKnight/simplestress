@@ -1,13 +1,14 @@
 syntax = "proto3";
 
 package proto;
-option go_package = "github.com/freedomknight/simplestress/proto";
+option go_package = "github.com/FreedomKnight/simplestress";
 
 message Ping {
+    string message = 1;
 }
 
 message Pong {
-    string message = 1;
+    string message = 2;
 }
 
 service Paddle {

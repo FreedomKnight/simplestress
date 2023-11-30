@@ -4,7 +4,7 @@
 // - protoc             v4.25.0
 // source: proto/paddle.proto
 
-package proto
+package simplestress
 
 import (
 	context "context"
