@@ -2,20 +2,22 @@ package main
 
 import (
 	"flag"
-
 	lib "github.com/FreedomKnight/simplestress/lib"
 )
 
 var (
     addr = flag.String("addr", "localhost:50051", "the address to connect to")
+    frequency = flag.Int64("frequency", 1, "the frequency of requests per second")
+    concurrent = flag.Int64("concurrent", 2, "the number of concurrent requests")
 )
 
 func main() {
     flag.Parse()
+
     r := lib.NewRunner(
         lib.Address(*addr),
-        lib.Frequency(2),
-        lib.Concurrent(1),
+        lib.Frequency(*frequency),
+        lib.Concurrent(*concurrent),
     )
     results := r.Run()
 
