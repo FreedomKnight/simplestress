@@ -1,2 +1,20 @@
+main: server/server client/client
+
 *.pb.go: proto/*.proto
 	protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative proto/*.proto
+
+server/server: server/main.go
+	GOOS=linux GOARCH=amd64 go build -o server/server server/main.go
+
+client/client: client/main.go
+	GOOS=linux GOARCH=amd64 go build -o client/client client/main.go
+
+clean:
+	rm -f server/server client/client
+
+build-client-docker: client
+	docker build . -f deployments/docker/client.dockerfile -t freedomknight/simplestress-client
+
+build-server-docker: client
+	docker build . -f deployments/docker/server.dockerfile -t freedomknight/simplestress-server
+
