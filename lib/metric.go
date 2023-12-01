@@ -1,18 +1,21 @@
 package simplestress
 
 import (
+	"encoding/json"
+	"io/ioutil"
 	"log"
 	"math"
 	"time"
 )
 
 type Metric struct {
-    MaxLatency time.Duration
-    MinLatency time.Duration
-    AverageLatency time.Duration
-    Requests int64
-    Errors int64
-    TotalLatency time.Duration
+    MaxLatency time.Duration `json:"max_latency"`
+    MinLatency time.Duration `json:"min_latency"`
+    AverageLatency time.Duration `json:"average_latency"`
+    Requests int64 `json:"requests"`
+    Errors int64 `json:"errors"`
+    Success int64 `json:"success"`
+    TotalLatency time.Duration `json:"total_latency"`
 }
 
 func NewMetric() *Metric {
@@ -22,6 +25,7 @@ func NewMetric() *Metric {
         AverageLatency: 0,
         Requests: 0,
         Errors: 0,
+        Success: 0,
         TotalLatency: 0,
     }
 }
@@ -34,6 +38,11 @@ func (m *Metric) Print() {
     log.Printf("MaxLatency: %v\n", m.MaxLatency)
     log.Printf("TotalLatency: %v\n", m.TotalLatency)
     log.Printf("AverageLatency: %v\n", m.AverageLatency)
+}
+
+func (m *Metric) Save(path string) {
+    jsonString, _ := json.MarshalIndent(m, "", "  ")
+    ioutil.WriteFile(path, jsonString, 0644)
 }
 
 func (m *Metric) Watch(results chan *Result, stop chan int) {
@@ -50,6 +59,9 @@ func (m *Metric) Watch(results chan *Result, stop chan int) {
                 if result.err != nil{
                     m.Errors++
                 }
+
+                m.Success = m.Requests - m.Errors
+
                 if m.MaxLatency < result.latency {
                     m.MaxLatency = result.latency
                 }
