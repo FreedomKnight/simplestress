@@ -1,9 +1,8 @@
 # Simple Stress Tool
 
-It's a simple self grpc stress testing tool
-You can deploy client and server on your own kubernetes cluster to test.
-It will set an k8s cronjob to do stress test. (once per 5 minutes)
-
+It's a simple self gRPC stress testing tool.
+You can deploy the client and server on your own Kubernetes cluster to test.
+It will set a Kubernetes cronjob to perform stress tests (once every 5 minutes).
 
 ## Run a simple ping pong GRPC Server
 
@@ -49,7 +48,7 @@ You can run make to build client and server command
 
 ## Build Docker
 
-You can build server/client docker images by make
+You can build server/client Docker images using make
 
 ```bash
     make build-client-docker
@@ -77,9 +76,9 @@ spec.JobTemplate.spec.template.containers[].args
 
 ## Read the Metrics results
 
-It's only support k8s log now.
-I recommand you to use k8s to read the cronjob result.
+It's only support k8s logs now.
+I recommand you use k9s to read the cronjob result.
 
-![screenshot](./assets/images/screenshot.png)
+[!screenshot](./assets/images/screenshot.png)
 
 
