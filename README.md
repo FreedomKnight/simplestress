@@ -2,6 +2,7 @@
 
 It's a simple self grpc stress testing tool
 You can deploy client and server on your own kubernetes cluster to test.
+It will set an k8s cronjob to do stress test. (once per 5 minutes)
 
 
 ## Run a simple ping pong GRPC Server
@@ -73,3 +74,12 @@ Here's the fields
 ```
 spec.JobTemplate.spec.template.containers[].args
 ```
+
+## Read the Metrics results
+
+It's only support k8s log now.
+I recommand you to use k8s to read the cronjob result.
+
+[!screenshot](./assets/images/screenshot.png)
+
+
