@@ -80,6 +80,6 @@ spec.JobTemplate.spec.template.containers[].args
 It's only support k8s log now.
 I recommand you to use k8s to read the cronjob result.
 
-[!screenshot](./assets/images/screenshot.png)
+![screenshot](./assets/images/screenshot.png)
 
 
