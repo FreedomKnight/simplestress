@@ -18,3 +18,13 @@ build-client-docker: client
 build-server-docker: client
 	docker build . -f deployments/docker/server.dockerfile -t freedomknight/simplestress-server
 
+build-docker: build-client-docker build-server-docker
+
+docker-push: build-docker
+	docker push freedomknight/simplestress-client
+	docker push freedomknight/simplestress-server
+
+deploy:
+	kubectl apply -f deployments/k8s/server.yaml
+	kubectl apply -f deployments/k8s/client.yaml
+
