@@ -28,3 +28,4 @@ deploy:
 	kubectl apply -f deployments/k8s/server.yaml
 	kubectl apply -f deployments/k8s/client.yaml
 
+.phony deploy clean
