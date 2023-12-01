@@ -1,4 +1,4 @@
-#Simple Stress Tool
+# Simple Stress Tool
 
 It's a simple self grpc stress testing tool
 You can deploy client and server on your own kubernetes cluster to test.
