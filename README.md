@@ -86,13 +86,14 @@ spec.JobTemplate.spec.template.containers[].args
 
 It will serve report service on report-service:80, your can use port-forward to see the latest report json
 
-Use forward command below will show on your `http://localhost:8080/report.json`
+Use forward command below will show on your `http://localhost:8080/report.json` and `http://localhost:8080/histogram.html`
 
 ```bash
 kubectl port-forward service/report-service 8080:80
 ```
 
 ![report-screenshot](./assets/images/report-snapshot.png)
+![histogram-screenshot](./assets/images/histogram-snapshot.png)
 
 If you don't want to forward report-service, I recommand you use k9s to read the cronjob result.
 
