@@ -88,7 +88,12 @@ func (r *Runner) work(wg *sync.WaitGroup, ticks chan int, results chan *Result) 
     defer wg.Done()
     // ping if get tick signal
     for range ticks {
-        results <- r.ping()
+        select  {
+            case <-r.stop:
+                return
+            default:
+                results <- r.ping()
+        }
     }
 }
 
