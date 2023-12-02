@@ -86,7 +86,7 @@ Use forward command below will show on your `http://localhost:8080/report.json`
 kubectl port-forward service/report-service 8080:80
 ```
 
-![report-screenshot](./assets/images/report-screenshot.png)
+![report-screenshot](./assets/images/report-snapshot.png)
 
 If you don't want to report-service, I recommand you use k9s to read the cronjob result.
 
