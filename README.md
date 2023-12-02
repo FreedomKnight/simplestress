@@ -93,7 +93,8 @@ kubectl port-forward service/report-service 8080:80
 ```
 
 ![report-screenshot](./assets/images/report-snapshot.png)
-![histogram-screenshot](./assets/images/histogram-snapshot.png)
+
+![histogram-screenshot](./assets/images/histogram-screenshot.png)
 
 If you don't want to forward report-service, I recommand you use k9s to read the cronjob result.
 
