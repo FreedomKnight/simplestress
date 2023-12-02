@@ -25,6 +25,7 @@ docker-push: build-docker
 	docker push freedomknight/simplestress-server
 
 deploy:
+	kubectl apply -f deployments/k8s/report.yaml
 	kubectl apply -f deployments/k8s/server.yaml
 	kubectl apply -f deployments/k8s/client.yaml
 
