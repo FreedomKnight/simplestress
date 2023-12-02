@@ -58,7 +58,9 @@ You can build server/client Docker images using make
 ## Deploy to kubernetes
 
 Before deploy to k8s, you need to configure you k8s credentials first.
-Then use ```make deploy``` to deploy
+If you are not using DigitalOcean Volume on Kubernetes, please replace your PersistentVolumeClaim at deployments/k8s/report.yaml
+
+Then use `make deploy` to deploy
 
 ```bash
     make deploy
@@ -76,8 +78,17 @@ spec.JobTemplate.spec.template.containers[].args
 
 ## Read the Metrics results
 
-It's only support k8s logs now.
-I recommand you use k9s to read the cronjob result.
+It will serve report service on report-service:80, your can use port-forward to see the latest report json
+
+Use forward command below will show on your `http://localhost:8080/report.json`
+
+```bash
+kubectl port-forward service/report-service 8080:80
+```
+
+![report-screenshot](./assets/images/report-screenshot.png)
+
+If you don't want to report-service, I recommand you use k9s to read the cronjob result.
 
 ![screenshot](./assets/images/screenshot.png)
 
