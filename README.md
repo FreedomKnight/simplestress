@@ -86,7 +86,7 @@ spec.JobTemplate.spec.template.containers[].args
 
 It will serve report service on report-service:80, your can use port-forward to see the latest report json
 
-Use forward command below will show on your `http://localhost:8080/report.json` and `http://localhost:8080/histogram.html`
+Use forward command below will show report json/histogram on your `http://localhost:8080/report.json` and `http://localhost:8080/histogram.html`
 
 ```bash
 kubectl port-forward service/report-service 8080:80

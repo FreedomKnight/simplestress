@@ -88,7 +88,7 @@ func (r *Runner) work(wg *sync.WaitGroup, ticks chan int, results chan *Result) 
     defer wg.Done()
     // ping if get tick signal
     for range ticks {
-        select  {
+        select {
             case <-r.stop:
                 return
             default:
@@ -113,14 +113,9 @@ func (r *Runner) calculateWaitingTime(elapsed time.Duration, hits int64) (time.D
 }
 
 func (r *Runner) Stop() {
-    select {
-        case <-r.stop:
-            return
-        default:
-            r.once.Do(func() {
-                close(r.stop)
-            })
-    }
+    r.once.Do(func() {
+        close(r.stop)
+    })
 }
 
 func (r *Runner) Run() chan *Result {
