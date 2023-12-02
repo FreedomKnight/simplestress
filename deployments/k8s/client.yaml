@@ -3,19 +3,28 @@ kind: CronJob
 metadata:
   name: stress-cronjob
 spec:
-  schedule: "*/5 * * * *"
+  schedule: "* * * * *"
   jobTemplate:
     spec:
       template:
         spec:
+          volumes:
+            - name: report-volume
+              persistentVolumeClaim:
+                claimName: report-volume
           containers:
           - name: simplestress-client
             image: freedomknight/simplestress-client:latest
-            command:
-              - "./client"
+            command: ["./client"]
             args:
               - "-frequency=10" 
               - "-concurrent=5"
               - "-addr=api-service:50051"
+              - "-report-path=/data/report.json"
+            volumeMounts:
+            - name: report-volume
+              mountPath: /data
+
             imagePullPolicy: "Always"
           restartPolicy: Never
+

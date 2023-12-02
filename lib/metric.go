@@ -42,7 +42,10 @@ func (m *Metric) Print() {
 
 func (m *Metric) Save(path string) {
     jsonString, _ := json.MarshalIndent(m, "", "  ")
-    ioutil.WriteFile(path, jsonString, 0644)
+    err := ioutil.WriteFile(path, jsonString, 0644)
+    if err != nil {
+        log.Printf("Failed to save report file: %v\n", err)
+    }
 }
 
 func (m *Metric) Watch(results chan *Result, stop chan int) {

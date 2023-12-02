@@ -13,10 +13,10 @@ clean:
 	rm -f server/server client/client
 
 build-client-docker: client
-	docker build . -f deployments/docker/client.dockerfile -t freedomknight/simplestress-client
+	docker build --platform linux/amd64 . -f deployments/docker/client.dockerfile -t freedomknight/simplestress-client
 
 build-server-docker: client
-	docker build . -f deployments/docker/server.dockerfile -t freedomknight/simplestress-server
+	docker build --platform linux/amd64 . -f deployments/docker/server.dockerfile -t freedomknight/simplestress-server
 
 build-docker: build-client-docker build-server-docker
 
