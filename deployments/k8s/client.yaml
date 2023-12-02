@@ -21,6 +21,7 @@ spec:
               - "-concurrent=5"
               - "-addr=api-service:50051"
               - "-report-path=/data/report.json"
+              - "-histogram-path=/data/histogram.html"
             volumeMounts:
             - name: report-volume
               mountPath: /data

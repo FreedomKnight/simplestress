@@ -3,10 +3,10 @@ main: server/server client/client
 *.pb.go: proto/*.proto
 	protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative proto/*.proto
 
-server/server: server/main.go
+server/server: server/main.go lib/*.go *.pb.go
 	GOOS=linux GOARCH=amd64 go build -o server/server server/main.go
 
-client/client: client/main.go
+client/client: client/main.go lib/*.go *.pb.go
 	GOOS=linux GOARCH=amd64 go build -o client/client client/main.go
 
 clean:

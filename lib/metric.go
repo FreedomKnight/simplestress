@@ -57,7 +57,10 @@ func (m *Metric) Plot(path string) {
     bar.SetXAxis([]string{"Success", "Errors"}).
         AddSeries("Success/Errors", items)
     f, _ := os.Create(path)
-    bar.Render(f)
+    err := bar.Render(f)
+    if err != nil {
+        log.Printf("Failed to save histogram file: %v\n", err)
+    }
 }
 
 func (m *Metric) Save(path string) {

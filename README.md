@@ -36,6 +36,12 @@ Heer's argument usages
         the number of concurrent requests (default 2)
   -frequency int
         the frequency of requests per second (default 1)
+  -histogram-path string
+        the path to the historgram file (default "histogram.html")
+  -report-path string
+        the path to the report file (default "report.json")
+  -runtime int
+        the number of seconds to run (default 10)
 ```
 
 ## Build
