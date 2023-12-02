@@ -12,6 +12,7 @@ var (
     frequency = flag.Int64("frequency", 1, "the frequency of requests per second")
     concurrent = flag.Int64("concurrent", 2, "the number of concurrent requests")
     reportPath = flag.String("report-path", "report.json", "the path to the report file")
+    histogramPath = flag.String("histogram-path", "histogram.html", "the path to the historgram file")
     runtime = flag.Int64("runtime", 10, "the number of seconds to run")
 )
 
@@ -31,5 +32,6 @@ func main() {
     metric.Watch(results, stopMetric)
     metric.Print()
     metric.Save(*reportPath)
+    metric.Plot(*histogramPath)
 }
 
