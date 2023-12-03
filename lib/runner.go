@@ -75,7 +75,7 @@ func (r *Runner) ping() *Result {
     c := pb.NewPaddleClient(conn)
     ctx, cancel := context.WithTimeout(context.Background(), r.timeout)
     defer cancel()
-    _, err = c.Serve(ctx, &pb.Ping{Message: "Hello World!"})
+    _, err = c.Serve(ctx, &pb.Ping{Message: "Ping"})
     if (err != nil) {
         log.Println(err.Error())
     }
